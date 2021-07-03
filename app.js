@@ -1,5 +1,5 @@
 const myCanvas = document.getElementById("myCanvas");
-const myCanvas_ctx = myCanvas.getContext("2d");
+const myCanvasCtx = myCanvas.getContext("2d");
 let playAgain = document.querySelector(".playAgain");
 let axisX;
 let axisY;
@@ -17,7 +17,7 @@ const main = () => {
     }
     addApple();
     setTimeout(function () {
-        clearCanvas();
+        canvasDraw();
         movement();
         snakeDraw();
         document.getElementById("score").innerHTML = "Puntuación: " + score;
@@ -25,20 +25,20 @@ const main = () => {
     }, 120);
 }
 //Dibujar la pista
-const clearCanvas = () => {
-    myCanvas_ctx.fillStyle = 'white';
-    myCanvas_ctx.strokestyle = 'black';
-    myCanvas_ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
-    myCanvas_ctx.strokeRect(0, 0, myCanvas.width, myCanvas.height);
+const canvasDraw = () => {
+    myCanvasCtx.fillStyle = 'white';
+    myCanvasCtx.strokestyle = 'black';
+    myCanvasCtx.fillRect(0, 0, myCanvas.width, myCanvas.height);
+    myCanvasCtx.strokeRect(0, 0, myCanvas.width, myCanvas.height);
 }
 
 //Dibujar la snake
 const snakeDraw = () => {
     snake.forEach(function addSnake(add) {
-        myCanvas_ctx.fillStyle = 'blue';
-        myCanvas_ctx.strokestyle = 'blue';
-        myCanvas_ctx.fillRect(add.x, add.y, 10, 10);
-        myCanvas_ctx.strokeRect(add.x, add.y, 10, 10);
+        myCanvasCtx.fillStyle = 'blue';
+        myCanvasCtx.strokestyle = 'blue';
+        myCanvasCtx.fillRect(add.x, add.y, 10, 10);
+        myCanvasCtx.strokeRect(add.x, add.y, 10, 10);
     });
 }
 
@@ -104,10 +104,10 @@ const apple = () => {
 
 //Dibujar manzana
 const addApple = () => {
-    myCanvas_ctx.fillStyle = 'red';
-    myCanvas_ctx.strokestyle = 'red';
-    myCanvas_ctx.fillRect(appleX, appleY, 10, 10);
-    myCanvas_ctx.strokeRect(appleX, appleY, 10, 10);
+    myCanvasCtx.fillStyle = 'red';
+    myCanvasCtx.strokestyle = 'red';
+    myCanvasCtx.fillRect(appleX, appleY, 10, 10);
+    myCanvasCtx.strokeRect(appleX, appleY, 10, 10);
 }
 
 const gameOver = () => {
@@ -135,6 +135,6 @@ const replay = () => {
     apple();
     main();
 }
-clearCanvas();
+canvasDraw();
 playAgain.addEventListener("click", replay);
 document.addEventListener("keydown", direction);
