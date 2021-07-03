@@ -22,7 +22,7 @@ const main = () => {
         snakeDraw();
         document.getElementById("score").innerHTML = "Puntuación: " + score;
         main();
-    }, 150);
+    }, 120);
 }
 //Dibujar la pista
 const clearCanvas = () => {
@@ -91,21 +91,6 @@ const direction = (event) => {
     }
 }
 
-const gameOver = () => {
-    //Si la snake toca alguna parte de su cuerpo
-    for (let i = 1; i < snake.length; i++) {
-        if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
-            return true
-        }
-    }
-    ////Si la snake llega al límite de la pista
-    const endLeft = snake[0].x < 0;
-    const endRight = snake[0].x > myCanvas.width - 10;
-    const endTop = snake[0].y < 0;
-    const endBottom = snake[0].y > myCanvas.height - 10;
-
-    return endLeft || endRight || endTop || endBottom
-}
 
 //Generar manzana random
 const randomApple = (min, max) => {
@@ -129,6 +114,22 @@ const addApple = () => {
     myCanvas_ctx.strokestyle = 'red';
     myCanvas_ctx.fillRect(appleX, appleY, 10, 10);
     myCanvas_ctx.strokeRect(appleX, appleY, 10, 10);
+}
+
+const gameOver = () => {
+    //Si la snake toca alguna parte de su cuerpo
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
+            return true
+        }
+    }
+    ////Si la snake llega al límite de la pista
+    const endLeft = snake[0].x < 0;
+    const endRight = snake[0].x > myCanvas.width - 10;
+    const endTop = snake[0].y < 0;
+    const endBottom = snake[0].y > myCanvas.height - 10;
+
+    return endLeft || endRight || endTop || endBottom
 }
 
 const replay = () => {
