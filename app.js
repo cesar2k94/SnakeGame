@@ -34,14 +34,12 @@ const clearCanvas = () => {
 
 //Dibujar la snake
 const snakeDraw = () => {
-    snake.forEach(addSnake);
-}
-
-const addSnake = (add) => {
-    myCanvas_ctx.fillStyle = 'blue';
-    myCanvas_ctx.strokestyle = 'blue';
-    myCanvas_ctx.fillRect(add.x, add.y, 10, 10);
-    myCanvas_ctx.strokeRect(add.x, add.y, 10, 10);
+    snake.forEach(function addSnake(add) {
+        myCanvas_ctx.fillStyle = 'blue';
+        myCanvas_ctx.strokestyle = 'blue';
+        myCanvas_ctx.fillRect(add.x, add.y, 10, 10);
+        myCanvas_ctx.strokeRect(add.x, add.y, 10, 10);
+    });
 }
 
 const movement = () => {
@@ -57,35 +55,31 @@ const movement = () => {
     }
 }
 const direction = (event) => {
-    const LEFT = 37;
-    const UP = 38;
-    const RIGHT = 39;
-    const DOWN = 40;
-
     const keyPressed = event.keyCode;
+
     //verificar en que dirección y sentido se mueve la snake
-    const directionUp = axisY === -10;
-    const directionDown = axisY === 10;
     const directionRight = axisX === 10;
+    const directionDown = axisY === 10;
     const directionLeft = axisX === -10;
+    const directionUp = axisY === -10;
 
     //cambiar dirección
-    if (keyPressed === LEFT && !directionRight) {
+    if (keyPressed === 37 && !directionRight) {
         axisX = -10;
         axisY = 0;
     }
 
-    if (keyPressed === UP && !directionDown) {
+    if (keyPressed === 38 && !directionDown) {
         axisX = 0;
         axisY = -10;
     }
 
-    if (keyPressed === RIGHT && !directionLeft) {
+    if (keyPressed === 39 && !directionLeft) {
         axisX = 10;
         axisY = 0;
     }
 
-    if (keyPressed === DOWN && !directionUp) {
+    if (keyPressed === 40 && !directionUp) {
         axisX = 0;
         axisY = 10;
     }
